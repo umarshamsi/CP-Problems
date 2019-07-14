@@ -1,0 +1,40 @@
+/*WRITER : POSEIDON*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(false);
+	int t,i;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+		int r,c,j,k,cmax=0,rmax=0,jmax=1,kmax=1;
+		cin>>r>>c;
+		string block[r+1];
+		int row[r+1]={0},column[c+1]={0};
+		for(j=1;j<=r;j++)
+		{
+			cin>>block[j-1];
+			for(k=1;k<=c;k++)
+			{
+				if(block[j-1][k-1]=='*')
+				{
+					row[j]++;column[k]++;
+				}
+			}
+		}
+		int ans=0;
+		for(j=1;j<=r;j++)
+		{
+			for(k=1;k<=c;k++)
+			{
+				if(block[j-1][k-1]=='.')
+				ans=max(ans,row[j]+column[k]);
+				else
+				ans=max(ans,row[j]+column[k]-1);
+			}
+		}
+		cout<<r+c-1-ans<<endl;
+	}
+	return 0;
+}
