@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define IOS ios::sync_with_stdio(false);
+#define pb push_back
+int main()
+{
+	IOS
+	int q,i;
+	cin>>q;
+	for(i=0;i<q;i++)
+	{
+		string s,t,p;
+		cin>>s>>t>>p;
+		if(s.length()>t.length())
+		{
+			cout<<"NO"<<endl;
+			continue;
+		}
+		int j=0,k=0,f=0,n;
+		for(;;)
+		{
+			if(s[j]==t[k])
+			{
+				j++;k++;
+			}
+			else 
+			{
+				for(n=0;n<p.length();n++)
+				{
+					if(p[n]==t[k])
+					{
+						p[n]='.';
+						k++;
+						break;
+					}
+				}
+				if(n==p.length())
+				{
+					f=1;
+					break;
+				}
+			}
+			if(j==s.length())
+			break;
+			if(k==t.length() && j!=s.length())
+			{
+				f=1;
+				break;
+			}
+		}
+		if(f==1)
+		{cout<<"NO"<<endl;continue;}
+		while(k<t.length())
+		{
+			for(n=0;n<p.length();n++)
+			{
+				if(p[n]==t[k])
+				{
+					p[n]='.';
+					k++;
+					break;
+				}
+			}
+			if(n==p.length())
+			{
+				f=1;
+				break;
+			}
+		}
+		if(f==1)
+		{cout<<"NO"<<endl;continue;}
+		cout<<"YES"<<endl;
+	}
+	return 0;
+}
